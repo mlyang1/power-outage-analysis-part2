@@ -30,7 +30,8 @@ At the time of prediction, the known information of the outage would be:
 ## Baseline Model
 
 A baseline Decision Tree Classifier model predicts the cause of outages based on the known categorical information of the outage.
-Nominal categorical features were created for this model by one hot encoding the categorical columns: ['YEAR', 'MONTH', 'STATE', 'CLIMATE.REGION', 'CLIMATE.CATEGORY']
+Nominal categorical features were created for this model by one hot encoding the categorical columns:
+* ['YEAR', 'MONTH', 'STATE', 'CLIMATE.REGION', 'CLIMATE.CATEGORY']
 The score for this baseline model based on the test data is 0.6447368421052632. This score is not bad but it can be better.
 
 
@@ -38,12 +39,14 @@ The score for this baseline model based on the test data is 0.6447368421052632. 
 
 The final Decision Tree Classifier model predicts the cause of outages based on the known categorical as well as known numerical information of the outage.
 Nominal categorical features from the baseline model were kept the same.
-Numerical features were created for the final model by using mean imputation on missing values and a Standard Scaler on the numerical columns: ['DEMAND.LOSS.MW', 'CUSTOMERS.AFFECTED', 'TOTAL.PRICE', 'TOTAL.SALES', 'TOTAL.CUSTOMERS']
+Numerical features were created for the final model by using mean imputation on missing values and a Standard Scaler on the numerical columns:
+* ['DEMAND.LOSS.MW', 'CUSTOMERS.AFFECTED', 'TOTAL.PRICE', 'TOTAL.SALES', 'TOTAL.CUSTOMERS']
 These features improved the model's performance because it added new information about demand loss, customers, price, sales, etc. that further distinguishes different causes from each other, making predictions more accurate.
-A GridSearchCV was performed to prevent overfitting and determine the best hyperparameters for the Decision Tree Classifier: {'criterion': 'entropy',
- 'max_depth': 7,
- 'max_leaf_nodes': 15,
- 'min_samples_split': 5}
+A GridSearchCV was performed to prevent overfitting and determine the best hyperparameters for the Decision Tree Classifier:
+* 'criterion': 'entropy'
+* 'max_depth': 7
+* 'max_leaf_nodes': 15
+* 'min_samples_split': 5
  The score for the final model after determining the best hyperparameters is 0.7289473684210527. The final model's performance is an improvement over the baseline model's because the testing score is higher and the training score is lower, meaning the model is not overfit to the training data.
 
 ## Fairness Analysis
